@@ -3,10 +3,11 @@ import Template from './components/Template.vue'
 </script>
 
 <template>
-  <div class="container-fluid bg-secondary my-auto mx-auto">
-    <Template/>
-  </div>
+      <Template/>
 </template>
 
 <style scoped>
+/* body{
+    height: 100%;
+} */
 </style>
