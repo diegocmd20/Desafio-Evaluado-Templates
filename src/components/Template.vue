@@ -2,7 +2,7 @@
     <div class="container-fluid bg-secondary h-100 w-100">
         <div class="row vh-100 vw-100">
             <div class="col-6 my-auto d-flex flex-column justify-content-center align-items-center">
-                <form class="w-50">
+                <form>
                     <div class="mb-3">
                         <label class="form-label">Color de Fondo</label>
                         <input v-model="colorFondo" type="text" class="form-control"
@@ -13,9 +13,9 @@
                         <input v-model="colorTexto" type="text" class="form-control"
                             placeholder="Ingrese el color de Texto">
                     </div>
-                    <div class="d-flex align-items-center gap-1 mb-3">
-                        <label class="align-self-center">Mostrar Texto</label>
-                        <input type="checkbox" class="form-checkbox">
+                    <div class="form-check mb-3">
+                        <label class="form-check-label">Mostrar Texto</label>
+                        <input type="checkbox" class="form-check-input">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Borde</label>
@@ -34,12 +34,40 @@
                             <option value="oblique">Oblicua</option>
                         </select>
                     </div>
+                    <div class="d-flex align-items-center gap-1 mb-3">
+                        <label class="align-self-center">Opaco</label>
+                        <input type="checkbox" class="form-check-label">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tamaño de Letra</label>
+                        <div class="mb-3">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" v-model="tamanoTexto" value="px-auto py-auto fw-semibold fs-6 text">
+                                <label class="form-check-label">
+                                    Pequeño
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" v-model="tamanoTexto" value="px-auto py-auto fw-semibold fs-3 text">
+                                <label class="form-check-label">
+                                    Mediano
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" v-model="tamanoTexto" value="px-auto py-auto fw-semibold fs-1 text">
+                                <label class="form-check-label">
+                                    Grande
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="col-6 d-flex justify-content-center align-items-center">
                 <div :style="{ backgroundColor: colorFondo, borderRadius: borde + '%' }"
                     class="h-50 w-50 d-flex justify-content-center align-items-center text-center">
-                    <p :style="{ color: colorTexto, fontStyle: tipoFuente }" class="px-auto py-auto fw-semibold display-6">
+                    <p :style="{ color: colorTexto, fontStyle: tipoFuente }"
+                        :class="tamanoTexto">
                         {{ contenidoTexto }}</p>
                 </div>
             </div>
