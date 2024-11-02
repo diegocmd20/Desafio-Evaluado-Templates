@@ -15,7 +15,7 @@
                     </div>
                     <div class="form-check mb-3">
                         <label class="form-check-label">Mostrar Texto</label>
-                        <input type="checkbox" class="form-check-input">
+                        <input type="checkbox" class="form-check-input" v-model="mostrarTexto">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Borde</label>
@@ -65,7 +65,7 @@
             </div>
             <div class="col-6 d-flex justify-content-center align-items-center">
                 <div :style="{ backgroundColor: colorFondo, borderRadius: borde + '%' }"
-                    class="h-50 w-50 d-flex justify-content-center align-items-center text-center">
+                    class="h-50 w-50 d-flex justify-content-center align-items-center text-center" v-if="mostrarTexto === true">
                     <p :style="{ color: colorTexto, fontStyle: tipoFuente }"
                         :class="tamanoTexto">
                         {{ contenidoTexto }}</p>
@@ -83,7 +83,7 @@ export default {
         return {
             colorFondo: '',
             colorTexto: '',
-            mostrarTexto: '',
+            mostrarTexto: true,
             borde: '',
             contenidoTexto: '',
             tipoFuente: '',
