@@ -28,10 +28,8 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Tipo de Fuente</label>
-                        <select v-model="tipoFuente" class="form-select">
-                            <option value="italic">Italic</option>
-                            <option value="normal">Normal</option>
-                            <option value="oblique">Oblicua</option>
+                        <select v-model="fuenteSeleccionada" class="form-select">
+                            <option v-for="fuente in fuentes" :value="fuente" :key="fuente.nombre">{{fuente.nombre}}</option>
                         </select>
                     </div>
                     <div class="d-flex align-items-center gap-1 mb-3">
@@ -42,19 +40,22 @@
                         <label class="form-label">Tamaño de Letra</label>
                         <div class="mb-3">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" v-model="tamanoTexto" value="px-auto py-auto fw-semibold fs-6 text">
+                                <input class="form-check-input" type="radio" v-model="tamanoTexto"
+                                    value="px-auto py-auto fw-semibold fs-6 text">
                                 <label class="form-check-label">
                                     Pequeño
                                 </label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" v-model="tamanoTexto" value="px-auto py-auto fw-semibold fs-3 text">
+                                <input class="form-check-input" type="radio" v-model="tamanoTexto"
+                                    value="px-auto py-auto fw-semibold fs-3 text">
                                 <label class="form-check-label">
                                     Mediano
                                 </label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" v-model="tamanoTexto" value="px-auto py-auto fw-semibold fs-1 text">
+                                <input class="form-check-input" type="radio" v-model="tamanoTexto"
+                                    value="px-auto py-auto fw-semibold fs-1 text">
                                 <label class="form-check-label">
                                     Grande
                                 </label>
@@ -65,9 +66,9 @@
             </div>
             <div class="col-6 d-flex justify-content-center align-items-center">
                 <div :style="{ backgroundColor: colorFondo, borderRadius: borde + '%' }"
-                    class="h-50 w-50 d-flex justify-content-center align-items-center text-center" v-if="mostrarTexto === true">
-                    <p :style="{ color: colorTexto, fontStyle: tipoFuente }"
-                        :class="tamanoTexto">
+                    class="h-50 w-50 d-flex justify-content-center align-items-center text-center"
+                    v-if="mostrarTexto === true">
+                    <p :style="{ color: colorTexto}" :class="[tamanoTexto, fuenteSeleccionada.estiloTexto]">
                         {{ contenidoTexto }}</p>
                 </div>
             </div>
@@ -83,10 +84,28 @@ export default {
         return {
             colorFondo: '',
             colorTexto: '',
-            mostrarTexto: true,
+            mostrarTexto: false,
             borde: '',
             contenidoTexto: '',
-            tipoFuente: '',
+            fuenteSeleccionada: {},
+            fuentes: [
+                {
+                    nombre: 'Italic',
+                    estiloTexto: 'fst-italic',
+                },
+                {
+                    nombre: 'Normal',
+                    estiloTexto: 'fst-normal',
+                },
+                {
+                    nombre: 'Tachado',
+                    estiloTexto: 'text-decoration-line-through',
+                },
+                {
+                    nombre: 'Subrayado',
+                    estiloTexto: 'text-decoration-underline',
+                }
+            ],
             opaco: '',
             tamanoTexto: '',
         };
