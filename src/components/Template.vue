@@ -34,7 +34,7 @@
                     </div>
                     <div class="d-flex align-items-center gap-1 mb-3">
                         <label class="align-self-center">Opaco</label>
-                        <input type="checkbox" class="form-check-label">
+                        <input type="checkbox" class="form-check-input" v-model="opaco">
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Tamaño de Letra</label>
@@ -65,10 +65,10 @@
                 </form>
             </div>
             <div class="col-6 d-flex justify-content-center align-items-center">
-                <div :style="{ backgroundColor: colorFondo, borderRadius: borde + '%' }"
+                <div :style="{ backgroundColor: colorFondo, borderRadius: borde + '%', opacity: opaco === true? 0.5 : 1 }"
                     class="h-50 w-50 d-flex justify-content-center align-items-center text-center"
                     v-if="mostrarTexto === true">
-                    <p :style="{ color: colorTexto}" :class="[tamanoTexto, fuenteSeleccionada.estiloTexto]">
+                    <p :style="{color: colorTexto}" :class="[tamanoTexto, fuenteSeleccionada.estiloTexto]">
                         {{ contenidoTexto }}</p>
                 </div>
             </div>
@@ -106,7 +106,7 @@ export default {
                     estiloTexto: 'text-decoration-underline',
                 }
             ],
-            opaco: '',
+            opaco: false,
             tamanoTexto: '',
         };
     }
